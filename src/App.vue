@@ -1,19 +1,20 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <hello></hello>
+    <p>你好</p>
+    <Hello />
+    <Jack />
   </div>
 </template>
 
-<script>
-import Hello from './components/Hello'
 
-export default {
-  name: 'app',
-  components: {
-    Hello
+<script>
+  import Hexon from './components/Hexon'
+  export default {
+    components: {
+      "Hexon": Hexon,
+    }
   }
-}
 </script>
 
 <style>
