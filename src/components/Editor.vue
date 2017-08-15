@@ -18,20 +18,34 @@
       </li>
 
       <li v-bind:class="{active: currentTab === 1}">
-        <WorkHistoryEditor v-bind:workHistory="workHistory" />
+        <ArrayEditor v-bind:items="workHistory" v-bind:labels="{company: '公司', content: '工作内容'}" v-bind:title="'工作内容'"/>
       </li>
 
       <li v-bind:class="{active: currentTab === 2}">
-        <StudyHistoryEditor v-bind:items="studyHistory" />
+        <ArrayEditor v-bind:items="studyHistory" v-bind:labels="{school: '学校', duration: '时间', degree: '学位'}" title="学习经历" />
       </li>
       <li v-bind:class="{active: currentTab === 3}">
-        <h2>项目经历</h2>
+        <ArrayEditor v-bind:items="projects" v-bind:labels="{name: '项目名称', content: '项目内容'}" title="项目经历" />
       </li>
       <li v-bind:class="{active: currentTab === 4}">
-        <h2>爱好</h2>
+        <ArrayEditor v-bind:items="awards" v-bind:labels="{name: '奖励详情'}" title="获奖记录" />
       </li>
       <li v-bind:class="{active: currentTab === 5}">
-        <h2>不知道</h2>
+        <h2>联系方式</h2>
+          <el-form>
+            <el-form-item label="手机">
+                <el-input v-model="contact.phone"></el-input>
+            </el-form-item>
+            <el-form-item label="邮箱">
+                <el-input v-model="contact.email"></el-input>
+            </el-form-item>
+            <el-form-item label="微信">
+                <el-input v-model="contact.wechat"></el-input>
+            </el-form-item>
+            <el-form-item label="qq">
+                <el-input v-model="contact.qq"></el-input>
+            </el-form-item>
+          </el-form>
       </li>
     </ol>
   </div>
@@ -39,10 +53,9 @@
 
 <script>
   import ProfileEditor from './ProfileEditor'
-  import WorkHistoryEditor from './WorkHistoryEditor'
-  import StudyHistoryEditor from './StudyHistoryEditor'
-  export default {
-    components: { ProfileEditor , WorkHistoryEditor, StudyHistoryEditor},
+  import ArrayEditor from './ArrayEditor'
+   export default {
+    components: { ProfileEditor , ArrayEditor },
     data() {
       return {
         currentTab: 0,
@@ -53,11 +66,20 @@
           birth: ''
         },
         workHistory: [
-          {company: '', content: ''},
+          {company: '', content: '', xxx: ''},
         ],
         studyHistory: [
           {school: '', duration: '', degree: ''}
-        ]
+        ],
+        projects: [
+          {name: '', content: ''}
+        ],
+        awards: [
+          {name: ''}
+        ],
+        contact: {
+          phone: '', email: '', wechat: '', qq: ''
+        }
       }
     },
     // created()函数是组件被创建之后的回调函数

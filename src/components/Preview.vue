@@ -1,6 +1,6 @@
 <template>
   <div id="preview">
-    我是 preview 
+    我是 preview
   </div>
 </template>
 
