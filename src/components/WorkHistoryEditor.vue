@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>学习经历</h2>
+    <h2>工作经历</h2>
         <el-form>
           <!-- 这个(work, index) 是vue定义的语法 -->
           <div class="container" v-for="(work, index) in workHistory">
