@@ -2,41 +2,36 @@
   <div id="editor">
     <nav>
         <ol>
-            <li class = "active">
-              <svg class="icon ">
-                  <use xlink:href="#icon-ionc--"></use>
-              </svg>
-            </li><!--
-         --><li>
-              <svg class="icon">
-                  <use xlink:href="#icon-phone"></use>
-              </svg>
-            </li><!--
-          --><li>
-              <svg class="icon">
-                  <use xlink:href="#icon-work"></use>
-              </svg>
-            </li><!--
-            --><li>
-              <svg class="icon">
-                  <use xlink:href="#icon-project"></use>
-              </svg>
-            </li><!--
-            --><li>
-              <svg class="icon">
-                  <use xlink:href="#icon-book"></use>
-              </svg>
-            </li><!--
-            --><li>
-              <svg class="icon">
-                  <use xlink:href="#icon-iocn_hobby"></use>
-              </svg>
-            </li>
+          <li v-for="i in [0, 1, 2, 3, 4, 5]"
+              v-bind:class="{active: currentTab === i}"
+              v-on:click="currentTab = i"
+              >
+            <svg class="icon ">
+                <use v-bind:xlink:href="`#${icons[i]}`"></use>
+            </svg>
+          </li>
         </ol>
     </nav>
+    <ol class="pannes">
+      <li v-for="i in [0, 1, 2, 3, 4, 5]"
+          v-bind:class="{active: currentTab === i}"
+          >
+          Tab {{i + 1}}
+      </li>
+    </ol>
   </div>
 </template>
 
+<script>
+  export default {
+    data() {
+      return {
+        currentTab: 0,
+        icons: ['icon-ionc--', 'icon-phone', 'icon-work', 'icon-project', 'icon-book', 'icon-iocn_hobby']
+      }
+    }
+  }
+</script>
 
 <style lang="scss">
   #editor{
@@ -46,7 +41,7 @@
       background-color: #000;
       width: 80px;
       > ol > li {
-        padding: 8px 0;
+        padding: 16px 0;
         text-align: center;
         > .icon {
           width: 24px;
@@ -61,6 +56,14 @@
           }
         }
 
+      }
+    }
+    > .pannes {
+      > li {
+        display: none;
+        &.active {
+          display: block;
+        }
       }
     }
   }
