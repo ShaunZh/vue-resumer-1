@@ -20,13 +20,13 @@
       <li v-bind:class="{active: currentTab === 1}">
         <ArrayEditor v-bind:items="resume.workHistory" v-bind:labels="{company: '公司', content: '工作内容'}" v-bind:title="'工作内容'"/>
       </li>
-
       <li v-bind:class="{active: currentTab === 2}">
-        <ArrayEditor v-bind:items="resume.studyHistory" v-bind:labels="{school: '学校', duration: '时间', degree: '学位'}" title="学习经历" />
-      </li>
-      <li v-bind:class="{active: currentTab === 3}">
         <ArrayEditor v-bind:items="resume.projects" v-bind:labels="{name: '项目名称', content: '项目内容'}" title="项目经历" />
       </li>
+      <li v-bind:class="{active: currentTab === 3}">
+        <ArrayEditor v-bind:items="resume.studyHistory" v-bind:labels="{school: '学校', duration: '时间', degree: '学位'}" title="学习经历" />
+      </li>
+
       <li v-bind:class="{active: currentTab === 4}">
         <ArrayEditor v-bind:items="resume.awards" v-bind:labels="{name: '奖励详情'}" title="获奖记录" />
       </li>
