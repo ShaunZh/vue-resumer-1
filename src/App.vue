@@ -1,18 +1,22 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <p>你好</p>
-    <Hello />
-    <Jack />
+    <Topbar />
+    <Editor />
+    <Preview />
   </div>
 </template>
 
 
 <script>
-  import Hexon from './components/Hexon'
+  import Topbar from './components/Topbar'
+  import Editor from './components/Editor'
+  import Preview from './components/Preview'
   export default {
     components: {
-      "Hexon": Hexon,
+      "Topbar": Topbar,
+      "Editor": Editor,
+      "Preview": Preview,
+
     }
   }
 </script>
@@ -22,8 +26,5 @@
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
