@@ -40,12 +40,10 @@ html, body, #app {
   flex-direction: column;
 }
 .topbar {
-  background: red;
-}
+ }
 
 main{
-  background: green;
-  display: flex;
+   display: flex;
   flex: 1;
   > .editor {
     width: 20em;
