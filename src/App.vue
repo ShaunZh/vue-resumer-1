@@ -45,9 +45,13 @@ html, body, #app {
   flex-direction: column;
 }
 .topbar {
+<<<<<<< HEAD
   position: relative; z-index: 1;
   box-shadow: 0 0 3px hsla(0, 0, 0, 0.5);
  }
+=======
+}
+>>>>>>> 8e8c42ca1bc0f2410dda339f6de8a34161c21b09
 
 main{
   display: flex;
