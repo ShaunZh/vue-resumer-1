@@ -10,8 +10,8 @@
 </template>
 
 
-<style>
+<style lang="scss">
   #hexon {
-    color: red; 
+    color: red;
   }
 </style>
