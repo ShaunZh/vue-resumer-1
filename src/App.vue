@@ -115,7 +115,7 @@ html, body, #app {
   display: none;
 }
 
-.previewMode #preview {
+.previewMode main #preview {
   max-width: 800px;
   margin: 32px auto;
 }
