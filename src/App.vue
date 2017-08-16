@@ -24,13 +24,13 @@
             birth: ''
           },
           workHistory: [
-            {company: '', content: ''},
+            {company: '', duration: '', content: ''},
           ],
           studyHistory: [
             {school: '', duration: '', degree: ''}
           ],
           projects: [
-            {name: '', content: ''}
+            {name: '', duration: '', content: ''}
           ],
           awards: [
             {name: ''}
