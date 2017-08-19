@@ -13,6 +13,7 @@
   import Topbar from './components/Topbar'
   import Editor from './components/Editor'
   import Preview from './components/Preview'
+  import icons from './assets/icons'
   export default {
     data() {
       return {
@@ -54,8 +55,11 @@
       "Topbar": Topbar,
       "Editor": Editor,
       "Preview": Preview,
-
     },
+    created(){
+      document.body.insertAdjacentHTML('afterbegin', icons)
+
+    }
 
   }
 </script>
