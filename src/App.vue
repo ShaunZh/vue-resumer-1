@@ -10,10 +10,14 @@
 </template>
 
 <script>
+  import 'normalize.css'
+  import './assets/reset.css'
   import Topbar from './components/Topbar'
   import Editor from './components/Editor'
   import Preview from './components/Preview'
   import icons from './assets/icons'
+
+
   export default {
     data() {
       return {
@@ -42,6 +46,7 @@
         }
       }
     },
+    name: 'app',
     methods: {
       preview() {
         console.log('hhh');
@@ -51,10 +56,7 @@
         this.previewMode = false;
       }
     },
-    components: {
-      "Topbar": Topbar,
-      "Editor": Editor,
-      "Preview": Preview,
+    components: { Topbar,  Editor,  Preview,
     },
     created(){
       document.body.insertAdjacentHTML('afterbegin', icons)
@@ -64,74 +66,84 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" rel="stylesheet/less">
 
-html, body, #app {
-  height: 100%;
-  overflow: hidden;
-}
-.icon {
-       width: 1em; height: 1em;
-       vertical-align: -0.15em;
-       fill: currentColor;
-       overflow: hidden;
+  html, body, #app {
+    height: 100%;
+    overflow: hidden;
+  }
+  .icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
+
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  #app #topbar {
+    position: relative; z-index: 1;
+    box-shadow: 0 0 3px hsla(0, 0, 0, 0.5);
+  }
+
+  #app main{
+    display: flex;
+    flex: 1;
+    background: #DDD;
+
+    > #editor {
+      width: 40em;
+      margin: 16px 8px 16px 16px ;
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
     }
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-#app .topbar {
-  position: relative; z-index: 1;
-  box-shadow: 0 0 3px hsla(0, 0, 0, 0.5);
-}
-
-#app main{
-  display: flex;
-  flex: 1;
-  background: #DDD;
-
-  > .editor {
-    width: 40em;
-    margin: 16px 8px 16px 16px ;
-    background: #fff;
-    border-radius: 4px;
-    overflow: hidden;
+    > #preview {
+      flex: 1;
+      margin: 16px 16px 16px 8px;
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+    }
   }
 
-  > .preview {
-    flex: 1;
-    margin: 16px 16px 16px 8px;
-    background: #fff;
-    border-radius: 4px;
-    overflow: hidden;
+  .previewMode > #topbar {
+    display: none;
   }
-}
+  .previewMode #editor {
+    display: none;
+  }
 
-.previewMode > #topbar {
-  display: none;
-}
-.previewMode #editor {
-  display: none;
-}
+  .previewMode main #preview {
+    max-width: 800px;
+    margin: 32px auto;
+  }
 
-.previewMode main #preview {
-  max-width: 800px;
-  margin: 32px auto;
-}
+  #exitPreview {
+    display: none;
+  }
+  .previewMode #exitPreview {
+    display: inline-block;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
 
-#exitPreview {
-  display: none;
-}
-.previewMode #exitPreview {
-  display: inline-block;
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
+  }
 
-}
+  svg.icon{
+    height: 1em;
+    width: 1em;
+    fill: #fff;
+    vertical-align: -0.1em;
+    font-size: 16px;
+  }
 </style>
+
+
