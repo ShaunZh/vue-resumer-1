@@ -16,34 +16,35 @@
   import Editor from './components/Editor'
   import Preview from './components/Preview'
   import icons from './assets/icons'
+  import store from './store/index'
 
 
   export default {
     data() {
       return {
         previewMode: false,
-        resume: {
-          profile: {
-            name: '',
-            city: '',
-            birth: ''
-          },
-          workHistory: [
-            {company: '', duration: '', content: ''},
-          ],
-          studyHistory: [
-            {school: '', duration: '', degree: ''}
-          ],
-          projects: [
-            {name: '', duration: '', content: ''}
-          ],
-          awards: [
-            {name: ''}
-          ],
-          contact: {
-            phone: '', email: '', wechat: '', qq: ''
-          }
-        }
+//        resume: {
+//          profile: {
+//            name: '',
+//            city: '',
+//            birth: ''
+//          },
+//          workHistory: [
+//            {company: '', duration: '', content: ''},
+//          ],
+//          studyHistory: [
+//            {school: '', duration: '', degree: ''}
+//          ],
+//          projects: [
+//            {name: '', duration: '', content: ''}
+//          ],
+//          awards: [
+//            {name: ''}
+//          ],
+//          contact: {
+//            phone: '', email: '', wechat: '', qq: ''
+//          }
+//        }
       }
     },
     name: 'app',
@@ -56,8 +57,9 @@
         this.previewMode = false;
       }
     },
-    components: { Topbar,  Editor,  Preview,
-    },
+    // 导入store，它会被注入所有子组件中
+    store,
+    components: { Topbar,  Editor,  Preview},
     created(){
       document.body.insertAdjacentHTML('afterbegin', icons)
 

@@ -20,6 +20,7 @@
     <ol class="pannes">
       <li v-bind:class='{active: selected === "profile"}'>
         <ProfileEditor v-bind:profile="resume.profile" />
+
       </li>
 
       <li v-bind:class='{active: selected === "workHistory"}'>
@@ -53,6 +54,11 @@
           </el-form>
       </li>
     </ol>
+    <div>
+      {{count}}
+      <button @click="add">test</button>
+
+    </div>
   </div>
 </template>
 
@@ -62,27 +68,46 @@
    export default {
     components: { ProfileEditor , ArrayEditor },
     props: ['resume'],
-    data() {
-      return {
-        selected: 'profile',
-
-        icon: [
-          'id', 'work', 'book', 'heart', 'cup', 'phone'
-        ],
-        config: [
-          { field: 'profile', icon: 'id' },
-          { field: 'workHistory', icon: 'work' },
-          { field: 'studyHistory', icon: 'book' },
-          { field: 'projects', icon: 'heart' },
-          { field: 'awards', icon: 'cup' },
-          { field: 'contacts', icon: 'phone' },
-        ],
-      }
-    },
+//    data() {
+//      return {
+//        selected: 'profile',
+//
+//        icon: [
+//          'id', 'work', 'book', 'heart', 'cup', 'phone'
+//        ],
+//        config: [
+//          { field: 'profile', icon: 'id' },
+//          { field: 'workHistory', icon: 'work' },
+//          { field: 'studyHistory', icon: 'book' },
+//          { field: 'projects', icon: 'heart' },
+//          { field: 'awards', icon: 'cup' },
+//          { field: 'contacts', icon: 'phone' },
+//        ],
+//      }
+//    },
+     computed: {
+       count() {
+         // 通过this.$store 来访问 store
+         return this.$store.state.count;
+       },
+       selected() {
+         return this.$store.state.selected;
+       },
+       resume() {
+         return this.$store.state.resume;
+       }
+     },
+     methods: {
+       add() {
+         // 通过this.$store调用 store
+         this.$store.commit('increment');
+       }
+     },
     // created()函数是组件被创建之后的回调函数
     created() {
 
-    }
+    },
+
   }
 </script>
 
