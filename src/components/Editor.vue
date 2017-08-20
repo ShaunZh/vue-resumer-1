@@ -80,10 +80,6 @@
 //      }
 //    },
      computed: {
-       count() {
-         // 通过this.$store 来访问 store
-         return this.$store.state.count;
-       },
        selected:{
          get() {
            return this.$store.state.selected;
@@ -97,10 +93,6 @@
        }
      },
      methods: {
-       add() {
-         // 通过this.$store调用 store
-         this.$store.commit('increment');
-       }
      },
     // created()函数是组件被创建之后的回调函数
     created() {
