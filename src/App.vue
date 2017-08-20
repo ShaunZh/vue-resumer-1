@@ -123,7 +123,7 @@
 
   .previewMode main #preview {
     max-width: 800px;
-    margin: 32px auto;
+    margin: 32px auto !important;
   }
 
   #exitPreview {

@@ -19,7 +19,8 @@
   "dependencies": {
     "element-ui": "^1.4.2",
     "normalize.css": "^7.0.0",
-    "vue": "^2.3.3"
+    "vue": "^2.3.3",
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -72,4 +73,3 @@
     "not ie <= 8"
   ]
 }
-
