@@ -16,12 +16,12 @@ export default new Vuex.Store({
 
     resume: {
       config: [
-        { field: 'profile', icon: 'id' },
-        { field: 'workHistory', icon: 'work' },
-        { field: 'studyHistory', icon: 'book' },
-        { field: 'projects', icon: 'heart' },
-        { field: 'awards', icon: 'cup' },
-        { field: 'contacts', icon: 'phone' },
+        { title: '个人信息', field: 'profile', icon: 'id' },
+        { title: '工作经历', field: 'workHistory', icon: 'work' },
+        { title: '学习经历', field: 'studyHistory', icon: 'book' },
+        { title: '项目经历', field: 'projects', icon: 'heart' },
+        { title: '获奖经历', field: 'awards', icon: 'cup' },
+        { title: '联系方式', field: 'contact', icon: 'phone' },
       ],
       profile: {
         name: '',
@@ -47,7 +47,13 @@ export default new Vuex.Store({
   },
   mutations: {
     switchTab(state, payload) {
-      state.selected = payload
+      state.selected = payload;
+    },
+    updateResume(state, {field, subfield, value}) {
+      console.log(field);
+      console.log(subfield)
+      console.log(value)
+      state.resume[field][subfield] = value;
     }
   }
 })

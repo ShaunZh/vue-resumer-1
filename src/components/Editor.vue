@@ -17,42 +17,69 @@
           </li>
         </ol>
     </nav>
-    <ol class="pannes">
-      <li v-bind:class='{active: selected === "profile"}'>
-        <ProfileEditor v-bind:profile="resume.profile" />
+    <ol class="panels">
+      <li v-for="item in resume.config" v-show="item.field === selected">
+        <h2 class="title">{{item.title}}</h2>
+        <div v-if="resume[item.field] instanceof Array">
+          <div class="subitem" v-for="subitem in resume[item.field]">
+            <div class="resumeField" v-for="(value,key) in subitem" v-if="key !== 'title'">
+              <p class=""> {{key}} </p>
+              <div class="field">
+                <div class="control" >
+                  <input class="input text" type="text" placeholder="input" :value="value" @input="changeResumeField(item.field, key, $event.target.value)"></input>
+                </div>
+                <hr>
+              </div>
+            </div>
 
+          </div>
+          <el-button type="primary" v-on:click="addItem()">添加一项</el-button>
+        </div>
+        <div v-else class="resumeField" v-for="(value, key) in resume[item.field]">
+          <p class=""> {{key}} </p>
+          <div class="field">
+            <div class="control" >
+              <input class="input text" type="text" placeholder="input" :value="value"  @input="changeResumeField(item.field, key, $event.target.value)"></input>
+            </div>
+          </div>
+          <!--<input type="text" :value="value" @input="changeResumeField(item.field, key, $event.target.value)">-->
+        </div>
       </li>
+      <!--<li v-bind:class='{active: selected === "profile"}'>-->
+        <!--<ProfileEditor/>-->
 
-      <li v-bind:class='{active: selected === "workHistory"}'>
-        <ArrayEditor v-bind:items="resume.workHistory" v-bind:labels="{company: '公司', duration: '工作时间', content: '工作内容'}" v-bind:title="'工作经历'"/>
-      </li>
-      <li v-bind:class='{active: selected === "projects"}'>
-        <ArrayEditor v-bind:items="resume.projects" v-bind:labels="{name: '项目名称', duration: '项目时间', content: '项目内容'}" title="项目经历" />
-      </li>
-      <li v-bind:class='{active: selected === "studyHistory"}'>
-        <ArrayEditor v-bind:items="resume.studyHistory" v-bind:labels="{school: '学校', duration: '时间', degree: '学位'}" title="学习经历" />
-      </li>
+      <!--</li>-->
 
-      <li v-bind:class='{active: selected === "awards"}'>
-        <ArrayEditor v-bind:items="resume.awards" v-bind:labels="{name: '奖励详情'}" title="获奖记录" />
-      </li>
-      <li v-bind:class='{active: selected === "contacts"}'>
-        <h2>联系方式</h2>
-          <el-form>
-            <el-form-item label="手机">
-                <el-input v-model="resume.contact.phone"></el-input>
-            </el-form-item>
-            <el-form-item label="邮箱">
-                <el-input v-model="resume.contact.email"></el-input>
-            </el-form-item>
-            <el-form-item label="微信">
-                <el-input v-model="resume.contact.wechat"></el-input>
-            </el-form-item>
-            <el-form-item label="qq">
-                <el-input v-model="resume.contact.qq"></el-input>
-            </el-form-item>
-          </el-form>
-      </li>
+      <!--<li v-bind:class='{active: selected === "workHistory"}'>-->
+        <!--<ArrayEditor v-bind:items="resume.workHistory" v-bind:labels="{company: '公司', duration: '工作时间', content: '工作内容'}" v-bind:title="'工作经历'"/>-->
+      <!--</li>-->
+      <!--<li v-bind:class='{active: selected === "projects"}'>-->
+        <!--<ArrayEditor v-bind:items="resume.projects" v-bind:labels="{name: '项目名称', duration: '项目时间', content: '项目内容'}" title="项目经历" />-->
+      <!--</li>-->
+      <!--<li v-bind:class='{active: selected === "studyHistory"}'>-->
+        <!--<ArrayEditor v-bind:items="resume.studyHistory" v-bind:labels="{school: '学校', duration: '时间', degree: '学位'}" title="学习经历" />-->
+      <!--</li>-->
+
+      <!--<li v-bind:class='{active: selected === "awards"}'>-->
+        <!--<ArrayEditor v-bind:items="resume.awards" v-bind:labels="{name: '奖励详情'}" title="获奖记录" />-->
+      <!--</li>-->
+      <!--<li v-bind:class='{active: selected === "contacts"}'>-->
+        <!--<h2>联系方式</h2>-->
+          <!--<el-form>-->
+            <!--<el-form-item label="手机">-->
+                <!--<el-input v-model="resume.contact.phone"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="邮箱">-->
+                <!--<el-input v-model="resume.contact.email"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="微信">-->
+                <!--<el-input v-model="resume.contact.wechat"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="qq">-->
+                <!--<el-input v-model="resume.contact.qq"></el-input>-->
+            <!--</el-form-item>-->
+          <!--</el-form>-->
+      <!--</li>-->
     </ol>
   </div>
 </template>
@@ -93,6 +120,16 @@
        }
      },
      methods: {
+       changeResumeField(field, subfield, value) {
+         console.log(field)
+         console.log(subfield)
+         console.log(value)
+         this.$store.commit('updateResume', {
+           field,
+           subfield,
+           value
+         })
+       }
      },
     // created()函数是组件被创建之后的回调函数
     created() {
@@ -121,30 +158,64 @@
         }
       }
     }
-    > .pannes {
-      flex: 1;
-      .container {
-        position: relative;
-        .el-icon-circle-close {
-          position: absolute;
-          right: 0;
-          top: 0;
-        }
-      }
+    > .panels{
+      flex-grow: 1;
       > li {
-        height: 100%;
-        overflow: auto;
-        display: none;
-        padding: 32px;
-        &.active {
-          display: block;
-        }
+        padding: 24px;
       }
     }
-    svg.icon {
-      width: 32px;
-      height: 32px;
+    svg.icon{
+      width: 24px; // 原设计稿 32px 不好看，改成 24px
+      height: 24px;
     }
   }
+  ol{
+    list-style: none;
+  }
+  .resumeField{
+    > label{
+      display: block;
+    }
+    input[type=text]{
+      margin: 16px 0;
+      width: 100%;
+      height: 40px;
+      padding: 0 8px;
+    }
+  }
+  hr{
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 24px 0;
+  }
+
+
+
+
+  /*> .pannes {*/
+  /*flex: 1;*/
+  /*.container {*/
+  /*position: relative;*/
+  /*.el-icon-circle-close {*/
+  /*position: absolute;*/
+  /*right: 0;*/
+  /*top: 0;*/
+  /*}*/
+  /*}*/
+  /*> li {*/
+  /*height: 100%;*/
+  /*overflow: auto;*/
+  /*display: none;*/
+  /*padding: 32px;*/
+  /*&.active {*/
+  /*display: block;*/
+  /*}*/
+  /*}*/
+  /*}*/
+  /*svg.icon {*/
+  /*width: 32px;*/
+  /*height: 32px;*/
+  /*}*/
+  /*}*/
 
 </style>

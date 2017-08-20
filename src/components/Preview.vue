@@ -73,13 +73,9 @@
       }
     },
     computed: {
-      resume: {
-        get: function() {
-          return this.$store.state.resume;
-        },
-        set: function(value) {
-          return this.$store.commit('switchTab', value);
-        }
+      resume() {
+        console.log('ahhah')
+        return this.$store.state.resume;
       }
     }
   }
