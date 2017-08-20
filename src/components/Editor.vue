@@ -10,7 +10,7 @@
                 <!--<use v-bind:xlink:href="`#${icons[i]}`"></use>-->
             <!--</svg>-->
           <!--</li>-->
-          <li v-for="(item, index) in config" :class="{active: item.field === selected}" @click="selected = item.field">
+          <li v-for="(item, index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field">
             <svg class="icon">
               <use :xlink:href="`#icon-${item.icon}`"></use>
             </svg>
@@ -54,11 +54,6 @@
           </el-form>
       </li>
     </ol>
-    <div>
-      {{count}}
-      <button @click="add">test</button>
-
-    </div>
   </div>
 </template>
 
@@ -67,7 +62,6 @@
   import ArrayEditor from './ArrayEditor'
    export default {
     components: { ProfileEditor , ArrayEditor },
-    props: ['resume'],
 //    data() {
 //      return {
 //        selected: 'profile',
@@ -90,8 +84,13 @@
          // 通过this.$store 来访问 store
          return this.$store.state.count;
        },
-       selected() {
-         return this.$store.state.selected;
+       selected:{
+         get() {
+           return this.$store.state.selected;
+         },
+         set(value) {
+           return this.$store.commit('switchTab', value);
+         }
        },
        resume() {
          return this.$store.state.resume;

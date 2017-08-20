@@ -57,7 +57,6 @@
 
 <script >
   export default {
-    props: ['resume'],
     methods: {
       filter(array) { // 找出非空对象
         return array = array.filter( item => !this.isEmpty(item))
@@ -71,6 +70,16 @@
           }
         }
         return empty;
+      }
+    },
+    computed: {
+      resume: {
+        get: function() {
+          return this.$store.state.resume;
+        },
+        set: function(value) {
+          return this.$store.commit('switchTab', value);
+        }
       }
     }
   }
