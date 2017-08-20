@@ -21,16 +21,17 @@
       <li v-for="item in resume.config" v-show="item.field === selected">
         <h2 class="title">{{item.title}}</h2>
         <div v-if="resume[item.field] instanceof Array">
-          <div class="subitem" v-for="subitem in resume[item.field]">
+          <div class="subitem" v-for="(subitem, i) in resume[item.field]">
             <div class="resumeField" v-for="(value,key) in subitem" v-if="key !== 'title'">
               <p class=""> {{key}} </p>
               <div class="field">
                 <div class="control" >
-                  <input class="input text" type="text" placeholder="input" :value="value" @input="changeResumeField(item.field, key, $event.target.value)"></input>
+                  <input class="input text" type="text" placeholder="input" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)"></input>
                 </div>
                 <hr>
               </div>
             </div>
+
 
           </div>
           <el-button type="primary" v-on:click="addItem()">添加一项</el-button>
@@ -39,7 +40,7 @@
           <p class=""> {{key}} </p>
           <div class="field">
             <div class="control" >
-              <input class="input text" type="text" placeholder="input" :value="value"  @input="changeResumeField(item.field, key, $event.target.value)"></input>
+              <input class="input text" type="text" placeholder="input" :value="value"  @input="changeResumeField(`${item.field}.${key}`, $event.target.value)"></input>
             </div>
           </div>
           <!--<input type="text" :value="value" @input="changeResumeField(item.field, key, $event.target.value)">-->
@@ -120,13 +121,10 @@
        }
      },
      methods: {
-       changeResumeField(field, subfield, value) {
-         console.log(field)
-         console.log(subfield)
-         console.log(value)
+       changeResumeField(path, value) {
+         console.log(path);
          this.$store.commit('updateResume', {
-           field,
-           subfield,
+           path,
            value
          })
        }
