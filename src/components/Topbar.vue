@@ -24,12 +24,12 @@
 
     <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
       <!--这里面的内容将会放到MyDialog的slot位置-->
-      <SignUpForm @success="signIn($event)" />
+      <SignUpForm @success="signIn($event)" @cancel="cancel"/>
     </MyDialog>
 
     <MyDialog title="登录" :visible="signInDialogVisible"
               @close="signInDialogVisible = false" >
-      <SignInForm @success="signIn($event)"/>
+      <SignInForm @success="signIn($event)" @cancel="cancel"/>
     </MyDialog>
   </div>
 </template>
@@ -65,6 +65,10 @@
         this.signUpDialogVisible = false;
         this.signInDialogVisible = false;
         this.$store.commit('setUser', user);
+      },
+      cancel() {
+        this.signUpDialogVisible = false;
+        this.signInDialogVisible = false;
       }
     },
     computed: {

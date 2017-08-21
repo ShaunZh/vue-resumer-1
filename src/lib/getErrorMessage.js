@@ -14,5 +14,6 @@ const map = {
 
 
 export default function (code) {
+
   return map[code] || map.unknown;
 }

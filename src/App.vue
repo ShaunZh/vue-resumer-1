@@ -2,10 +2,10 @@
   <div>
     <div id="app" v-bind:class="{previewMode: previewMode}">
       <Topbar class="topbar" v-on:preview="preview"/>
-      <main>
+      <div class="main">
         <Editor class="editor"/>
         <Preview class="preview"/>
-      </main>
+      </div>
       <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
     </div>
   </div>
@@ -14,7 +14,7 @@
 <script>
   import 'normalize.css'
   import './assets/reset.css'
-  import 'bulma'
+//  import 'bulma'
   import Topbar from './components/Topbar'
   import Editor from './components/Editor'
   import Preview from './components/Preview'
@@ -103,7 +103,7 @@
     box-shadow: 0 0 3px hsla(0, 0, 0, 0.5);
   }
 
-  #app main{
+  #app .main{
     display: flex;
     flex: 1;
     background: #DDD;
@@ -131,7 +131,7 @@
     display: none;
   }
 
-  .previewMode main #preview {
+  .previewMode .main #preview {
     max-width: 800px;
     margin: 32px auto !important;
     padding: 40px;
