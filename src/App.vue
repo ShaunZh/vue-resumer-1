@@ -1,11 +1,13 @@
 <template>
-  <div id="app" v-bind:class="{previewMode: previewMode}">
-    <Topbar class="topbar" v-on:preview="preview"/>
-    <main>
-      <Editor class="editor"/>
-      <Preview class="preview"/>
-    </main>
-    <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
+  <div>
+    <div id="app" v-bind:class="{previewMode: previewMode}">
+      <Topbar class="topbar" v-on:preview="preview"/>
+      <main>
+        <Editor class="editor"/>
+        <Preview class="preview"/>
+      </main>
+      <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
+    </div>
   </div>
 </template>
 
