@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!--<div>-->
     <div id="app" v-bind:class="{previewMode: previewMode}">
       <Topbar class="topbar" v-on:preview="preview"/>
       <div class="main">
@@ -8,7 +8,7 @@
       </div>
       <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
     </div>
-  </div>
+  <!--</div>-->
 </template>
 
 <script>
@@ -82,7 +82,7 @@
 
   html, body, #app {
     height: 100%;
-    /*overflow: hidden;*/
+    overflow: hidden;
   }
   .icon {
     width: 1em; height: 1em;
@@ -97,6 +97,7 @@
     -moz-osx-font-smoothing: grayscale;
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
   #app #topbar {
     position: relative; z-index: 1;
@@ -113,6 +114,7 @@
       margin: 16px 8px 16px 16px ;
       background: #fff;
       border-radius: 4px;
+      overflow: hidden;
     }
 
     > #preview {
@@ -120,7 +122,7 @@
       margin: 16px 16px 16px 8px;
       background: #fff;
       border-radius: 4px;
-      overflow: hidden;
+      overflow: auto;
     }
   }
 

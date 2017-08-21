@@ -2,10 +2,10 @@
   <div id="preview" >
     <h3 class="title is-3">{{resume.profile.name  || "请填写姓名"}}</h3>
     <h4 class="title is-4">{{resume.profile.title || "请输入职位"}}</h4>
-    <p>{{resume.profile.city || "请填写城市"}} | {{resume.profile.birth || "请填写出生年月"}}</p>
+    <p>{{resume.profile.city || "请填写城市"}}   {{resume.profile.birth || "请填写出生年月"}}</p>
     <hr>
     <section v-if="filter(resume.workHistory).length > 0">
-      <h3 class="title is-4 tag">工作经历</h3>
+      <h3 class="subtitle is-4 itemTitle">工作经历</h3>
       <ul>
           <li v-for="work in filter(resume.workHistory)" class="part">
             <p class="is-large">{{work.company}}  {{work.duration}}</p>
@@ -16,7 +16,7 @@
     </section>
 
     <section v-if="filter(resume.projects).length > 0">
-      <h3 class="title is-4 tag">项目经历</h3>
+      <h3 class="subtitle is-4 itemTitle">项目经历</h3>
       <ul>
           <li v-for="project in filter(resume.projects)">
             <p class="is-large">{{project.name}} {{project.duration}}</p>
@@ -27,7 +27,7 @@
     </section>
 
     <section v-if="filter(resume.studyHistory).length > 0">
-      <h3 class="title is-4 tag">学习经历</h3>
+      <h3 class="subtitle is-4 itemTitle">学习经历</h3>
       <ul>
           <li v-for="study in filter(resume.studyHistory)">
             <p class="is-large">{{study.school}} {{study.duration}}</p>
@@ -37,7 +37,7 @@
       </ul>
     </section>
     <section v-if="filter(resume.awards).length > 0">
-      <h3 class="title is-4 tag">获奖情况</h3>
+      <h3 class="subtitle is-4 itemTitle">获奖情况</h3>
       <ul>
           <li v-for="award in filter(resume.awards)">
             {{award.name}}
@@ -45,14 +45,26 @@
            </li>
       </ul>
     </section>
-    <section v-if="!isEmpty(resume.contact)">
-      <h3 class="title is-4 tag">联系方式</h3>
-      <ul>
-          <li>{{resume.contact.phone || "请输入电话号码"}}</li>
-          <li>{{resume.contact.email || "请输入邮箱"}}</li>
-          <li>{{resume.contact.wechat || "请输入微信"}}</li>
-          <li>{{resume.contact.qq || "请输入QQ"}}</li>
-      </ul>
+    <section v-if="!isEmpty(resume.contact)" class="contact">
+      <h3 class="subtitle is-4 itemTitle">联系方式</h3>
+      <table>
+        <tr>
+          <td><strong>手机号码</strong></td>
+          <td>{{resume.contact.phone || "请输入电话号码"}}</td>
+        </tr>
+        <tr>
+          <td><strong>电子邮箱</strong></td>
+          <td>{{resume.contact.email || "请输入邮箱"}}</td>
+        </tr>
+        <tr>
+          <td><strong>微信</strong></td>
+          <td>{{resume.contact.wechat || "请输入微信"}}</td>
+        </tr>
+        <tr>
+          <td><strong>QQ</strong></td>
+          <td>{{resume.contact.qq || "请输入QQ"}}</td>
+        </tr>
+      </table>
     </section>
   </div>
 </template>
@@ -89,7 +101,18 @@
     min-height: 100px;
 
     .part {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    .itemTitle {
+      display: inline-block;
+      background: #ede5f5;
+    }
+    .contact{
+      table{
+        display: table;
+        border-collapse: separate;
+        border-spacing: 5px;
+      }
     }
   }
 </style>
