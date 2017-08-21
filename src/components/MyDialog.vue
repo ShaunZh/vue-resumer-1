@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" v-show="visible">
+  <div class="dialogWrapper" v-show="visible">
     <div class="dialog">
       <!--<div class="modal">-->
         <!--<div class="modal-background"></div>-->
@@ -35,7 +35,7 @@
 </script>
 
 <style scoped lang="scss" rel="stylesheet/less">
-  .wrapper {
+  .dialogWrapper{
     position: fixed;
     background: hsla(0, 0%, 0%, 0.25);
     top: 0;
