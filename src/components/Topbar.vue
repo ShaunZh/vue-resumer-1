@@ -4,10 +4,11 @@
       Resumer
     </div>
     <div class="actions">
+      <span>{{user}}</span>
       <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
       <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
         <!--这里面的内容将会放到MyDialog的slot位置-->
-        我就是slot内容
+        <SignUpForm @success="login($event)" />
       </MyDialog>
       <a class="button is-primary">登录</a>
       <a class="button is-primary is-outlined">保存</a>
@@ -19,6 +20,7 @@
 
 <script>
   import MyDialog from './MyDialog'
+  import SignUpForm from './SignUpForm'
 
   export default {
     name: 'Topbar',
@@ -28,13 +30,22 @@
       }
     },
     components: {
-      MyDialog
+      MyDialog, SignUpForm
     },
     methods: {
       preview() {
          this.$emit('preview');
+      },
+      login(user) {
+        this.signUpDialogVisible = false;
+        this.$store.commit('setUser', user);
       }
     },
+    computed: {
+      user() {
+        return this.$store.state.user
+      }
+    }
 
   }
 </script>

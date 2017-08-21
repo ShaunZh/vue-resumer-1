@@ -10,6 +10,10 @@ export default new Vuex.Store({
 
     count: 0,
     selected: 'profile',
+    user: {
+      id: '',
+      username: ''
+    },
 
     icon: [
       'id', 'work', 'book', 'heart', 'cup', 'phone'
@@ -65,6 +69,10 @@ export default new Vuex.Store({
       }
       objectPath.push(state.resume,  path,  newItem);
       localStorage.setItem('state',  JSON.stringify(state));
+    },
+    setUser(state, payload) {
+      Object.assign(state.user,  payload);
+      console.log(state.user);
     }
   }
 })

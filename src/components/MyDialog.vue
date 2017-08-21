@@ -11,7 +11,7 @@
           </header>
           <main>
             <!--如果在slot中添加内容，那么表示在调用该组件时，如果该组件没有内容，那么就将slot中的内容放到其中-->
-            <slot>哈哈哈</slot>
+            <slot></slot>
           </main>
         <!--</div>-->
         <!--<button class="modal-close is-large" aria-label="close"></button>-->
