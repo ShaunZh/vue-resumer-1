@@ -4,13 +4,22 @@
       Resumer
     </div>
     <div class="actions">
-      <span>{{user}}</span>
-      <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
-      <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-        <!--这里面的内容将会放到MyDialog的slot位置-->
-        <SignUpForm @success="login($event)" />
-      </MyDialog>
-      <a class="button is-primary">登录</a>
+      <!-- 如果登录了 显示账户信息 -->
+      <div v-if="logined" class="userActions">
+        <span>您好，{{user.username}}</span>
+        <a class="button is-info is-outlined" href="#">登出</a>
+      </div>
+
+      <!-- 如果没有登录 则提示注册/登录信息 -->
+      <div v-else class="userActions">
+        <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
+        <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+          <!--这里面的内容将会放到MyDialog的slot位置-->
+          <SignUpForm @success="login($event)" />
+        </MyDialog>
+        <a class="button is-primary">登录</a>
+      </div>
+
       <a class="button is-primary is-outlined">保存</a>
       <a class="button is-info is-outlined" v-on:click="preview">预览</a>
     </div>
@@ -44,6 +53,9 @@
     computed: {
       user() {
         return this.$store.state.user
+      },
+      logined() {
+        return this.user.id;
       }
     }
 
@@ -72,7 +84,7 @@
      /*}*/
   /*}*/
 
-  .actions > a{
+  .actions{
 
   }
 </style>
