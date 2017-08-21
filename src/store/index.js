@@ -51,6 +51,13 @@ export default new Vuex.Store({
     },
     updateResume(state, {path, value}) {
       objectPath.set(state.resume, path, value);
+    },
+    addFieldItem(state, {path}) {
+      let newItem = JSON.parse(JSON.stringify(state.resume[path][0]));
+      for (let key in newItem) {
+        newItem[key] = '';
+      }
+      objectPath.push(state.resume,  path,  newItem);
     }
   }
 })

@@ -72,7 +72,7 @@
 
   html, body, #app {
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
   .icon {
     width: 1em; height: 1em;
@@ -85,7 +85,6 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    height: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -104,7 +103,6 @@
       margin: 16px 8px 16px 16px ;
       background: #fff;
       border-radius: 4px;
-      overflow: hidden;
     }
 
     > #preview {

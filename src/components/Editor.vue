@@ -31,10 +31,8 @@
                 <hr>
               </div>
             </div>
-
-
           </div>
-          <el-button type="primary" v-on:click="addItem()">添加一项</el-button>
+          <el-button type="primary" v-on:click="addItem(`${item.field}`)">添加一项</el-button>
         </div>
         <div v-else class="resumeField" v-for="(value, key) in resume[item.field]">
           <p class=""> {{key}} </p>
@@ -126,7 +124,10 @@
          this.$store.commit('updateResume', {
            path,
            value
-         })
+         });
+       },
+       addItem(path) {
+         this.$store.commit('addFieldItem', {path});
        }
      },
     // created()函数是组件被创建之后的回调函数
@@ -140,6 +141,7 @@
 <style lang="scss" rel="stylesheet/less">
 
   #editor{
+
     min-height: 100px;
     display: flex;
     > nav {
@@ -158,6 +160,7 @@
     }
     > .panels{
       flex-grow: 1;
+      overflow: auto;
       > li {
         padding: 24px;
       }
