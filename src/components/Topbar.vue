@@ -7,7 +7,7 @@
       <!-- 如果登录了 显示账户信息 -->
       <div v-if="logined" class="userActions">
         <span>您好，{{user.username}}</span>
-        <a class="button is-info is-outlined" href="#">登出</a>
+        <a class="button is-info is-outlined" href="#" @click.prevent="signOut">登出</a>
       </div>
 
       <!-- 如果没有登录 则提示注册/登录信息 -->
@@ -15,7 +15,7 @@
         <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
         <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
           <!--这里面的内容将会放到MyDialog的slot位置-->
-          <SignUpForm @success="login($event)" />
+          <SignUpForm @success="signIn($event)" />
         </MyDialog>
         <a class="button is-primary">登录</a>
       </div>
@@ -30,6 +30,7 @@
 <script>
   import MyDialog from './MyDialog'
   import SignUpForm from './SignUpForm'
+  import AV from '../lib/leancloud'
 
   export default {
     name: 'Topbar',
@@ -45,7 +46,12 @@
       preview() {
          this.$emit('preview');
       },
-      login(user) {
+      signOut() {
+        AV.User.logOut();
+        this.$store.commit('removeUser');
+
+      },
+      signIn(user) {
         this.signUpDialogVisible = false;
         this.$store.commit('setUser', user);
       }
