@@ -14,6 +14,7 @@
 <script>
   import 'normalize.css'
   import './assets/reset.css'
+  import 'bulma'
   import Topbar from './components/Topbar'
   import Editor from './components/Editor'
   import Preview from './components/Preview'
@@ -133,6 +134,7 @@
   .previewMode main #preview {
     max-width: 800px;
     margin: 32px auto !important;
+    padding: 40px;
   }
 
   #exitPreview {

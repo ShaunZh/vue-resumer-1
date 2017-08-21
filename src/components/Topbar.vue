@@ -12,11 +12,14 @@
 
       <!-- 如果没有登录 则提示注册/登录信息 -->
       <div v-else class="userActions">
-        <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
-        <a class="button is-primary" @click.prevent="signInDialogVisible = true">登录</a>
+        <a href="#" class="button is-primary" @click.prevent="signUpDialogVisible = true">注册</a>
+        <a class="button" @click.prevent="signInDialogVisible = true">登录</a>
       </div>
-      <a class="button is-primary is-outlined">保存</a>
-      <a class="button is-info is-outlined" v-on:click="preview">预览</a>
+
+      <div class="userActions">
+        <a class="button is-primary is-outlined">保存</a>
+        <a class="button" v-on:click="preview">预览</a>
+      </div>
     </div>
 
     <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
@@ -76,7 +79,7 @@
   }
 </script>
 
-<style lang ="scss">
+<style lang ="scss" rel="stylesheet/less">
   #topbar {
     display: flex;
     justify-content: space-between;
@@ -85,6 +88,13 @@
     font-size: 20px;
 
     padding: 16px;
+    .actions {
+      display: flex;
+
+      .userActions {
+        margin: 0 10px;
+      }
+    }
   }
 
   /*.button {*/

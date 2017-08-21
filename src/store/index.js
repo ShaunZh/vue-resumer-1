@@ -23,13 +23,14 @@ export default new Vuex.Store({
       config: [
         { title: '个人信息', field: 'profile', icon: 'id' },
         { title: '工作经历', field: 'workHistory', icon: 'work' },
-        { title: '学习经历', field: 'studyHistory', icon: 'book' },
         { title: '项目经历', field: 'projects', icon: 'heart' },
+        { title: '学习经历', field: 'studyHistory', icon: 'book' },
         { title: '获奖经历', field: 'awards', icon: 'cup' },
         { title: '联系方式', field: 'contact', icon: 'phone' },
       ],
       profile: {
         name: '',
+        title: '',
         city: '',
         birth: ''
       },
