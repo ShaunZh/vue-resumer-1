@@ -2,7 +2,8 @@ import Vuex from 'vuex'
 import  Vue from 'vue'
 import objectPath from 'object-path'
 // const store = new Vuex.Store({
-Vue.use(Vuex)
+Vue.use(Vuex);
+
 
 export default new Vuex.Store({
   state: {
@@ -46,11 +47,16 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    initState(state, payload) {
+      Object.assign(state,  payload);
+    },
     switchTab(state, payload) {
       state.selected = payload;
+      localStorage.setItem('state', JSON.stringify(state));
     },
     updateResume(state, {path, value}) {
       objectPath.set(state.resume, path, value);
+      localStorage.setItem('state',  JSON.stringify(state));
     },
     addFieldItem(state, {path}) {
       let newItem = JSON.parse(JSON.stringify(state.resume[path][0]));
@@ -58,6 +64,7 @@ export default new Vuex.Store({
         newItem[key] = '';
       }
       objectPath.push(state.resume,  path,  newItem);
+      localStorage.setItem('state',  JSON.stringify(state));
     }
   }
 })
