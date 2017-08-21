@@ -71,6 +71,15 @@ export default new Vuex.Store({
       objectPath.push(state.resume,  path,  newItem);
       localStorage.setItem('state',  JSON.stringify(state));
     },
+    removeFieldItem(state, {path, index}) {
+      state.resume[path].splice(index,  1);
+      // let newItem = JSON.parse(JSON.stringify(state.resume[path][0]));
+      // for (let key in newItem) {
+      //   newItem[key] = '';
+      // }
+      // objectPath.push(state.resume,  path,  newItem);
+      localStorage.setItem('state',  JSON.stringify(state));
+    },
     setUser(state, payload) {
       Object.assign(state.user,  payload);
     },

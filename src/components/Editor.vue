@@ -14,6 +14,7 @@
         <h2 class="title">{{item.title}}</h2>
         <div v-if="resume[item.field] instanceof Array">
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
+            <i class="el-icon-circle-close close-item" v-show="resume[item.field].length > 1" @click="removeItem(`${item.field}`, i)"></i>
             <div class="resumeField" v-for="(value,key) in subitem" v-if="key !== 'title'">
               <p class=""> {{key}} </p>
               <div class="field">
@@ -68,6 +69,9 @@
        },
        addItem(path) {
          this.$store.commit('addFieldItem', {path});
+       },
+       removeItem(path, index) {
+         this.$store.commit('removeFieldItem', {path, index});
        }
      },
     // created()函数是组件被创建之后的回调函数
@@ -104,6 +108,9 @@
       > li {
         padding: 24px;
       }
+      .subitem {
+        position: relative;
+      }
     }
     svg.icon{
       width: 24px; // 原设计稿 32px 不好看，改成 24px
@@ -128,5 +135,14 @@
     border: none;
     /*border-top: 1px solid #ddd;*/
     margin: 16px 0;
+  }
+
+  .close-item {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 </style>
