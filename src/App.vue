@@ -7,6 +7,9 @@
         <Preview class="preview"/>
       </div>
       <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
+      <!-- router-view 用来显示路由信息，如果需要路由跳转 -->
+      <!-- 则使用 <router-link to=xxx></router-link> -->
+      <router-view></router-view>
     </div>
   <!--</div>-->
 </template>
@@ -14,7 +17,6 @@
 <script>
   import 'normalize.css'
   import './assets/reset.css'
-//  import 'bulma'
   import Topbar from './components/Topbar'
   import Editor from './components/Editor'
   import Preview from './components/Preview'
@@ -28,28 +30,6 @@
     data() {
       return {
         previewMode: false,
-//        resume: {
-//          profile: {
-//            name: '',
-//            city: '',
-//            birth: ''
-//          },
-//          workHistory: [
-//            {company: '', duration: '', content: ''},
-//          ],
-//          studyHistory: [
-//            {school: '', duration: '', degree: ''}
-//          ],
-//          projects: [
-//            {name: '', duration: '', content: ''}
-//          ],
-//          awards: [
-//            {name: ''}
-//          ],
-//          contact: {
-//            phone: '', email: '', wechat: '', qq: ''
-//          }
-//        }
       }
     },
     name: 'app',

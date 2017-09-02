@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 
+// 导入路由
+import router from './router'
 
 import 'normalize.css'
 import './assets/reset.scss'
@@ -18,6 +20,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  router,   // 引入路由
   template: '<App />',
   components: { App }
 })
